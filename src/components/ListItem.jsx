@@ -37,12 +37,12 @@ const ListItem = ({ itemname, data }) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-[-40px] z-10 mt-2 min-w-[250px] origin-top-right bg-[#fafafa] rounded-xl">
-          <div className="shadow-2xl rounded-xl">
+        <Menu.Items className="absolute right-[-40px] z-10 mt-2 min-w-[250px] origin-top-right bg-white rounded-lg">
+          <div className="shadow-2xl rounded-lg">
             <Menu.Item>
               <>
-                {data.map((i) => (
-                  <Link key={i.id} href={`${i.link}`} className="flex border-b border-darkBlue px-5 py-2 w-full text-sm text-darkBlue font-semibold font-main">
+                {data.map((i,index,arr) => (
+                  <Link key={i.id} href={`${i.link}`} className={`flex ${arr.length - 1 === index ? "":"border-b"} border-darkBlue px-5 py-2 w-full text-sm text-darkBlue font-semibold font-main`}>
                     {i.name}
                   </Link>
                 ))}

@@ -1,3 +1,4 @@
+
 import Button from "@/components/Button";
 import BlogCard from "../components/BlogCard";
 
@@ -6,6 +7,7 @@ import { ChevronRightIcon } from "@heroicons/react/20/solid";
 export default function Home() {
   const handleClick = () => {
     console.log("hiii");
+    
   };
 
   return (

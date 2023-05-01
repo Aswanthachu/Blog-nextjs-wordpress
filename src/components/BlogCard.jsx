@@ -1,12 +1,28 @@
 import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from 'next/router';
+
 import Button from "./Button";
 
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 const BlogCard = () => {
-    const handleClick=()=>{
-        console.log("hiii");
-    }
+  const router=useRouter();
+
+  const handleClick = () => {
+    console.log("hiii");
+    router.push("/fghjk")
+  };
+
+  const copyTOClipboard = () => {
+    // navigator.clipboard.writeText(referData?.referalCode);
+    toast.success("link copied to clipboard",{
+        style: {
+            boxShadow:'none'
+          },
+    });
+  };
+
   return (
     <div className="p-4 rounded-3xl bg-white max-w-xs">
       <div className="">
@@ -24,8 +40,21 @@ const BlogCard = () => {
           since the 1500s,
         </p>
         <div className="my-3 flex justify-between">
-          <Image src="/svgs/ShareIcon.svg" alt="share" width="20" height="20" />
-          <Button text="Read More" onClick={handleClick} className={`bg-darkBlue p-2 text-white rounded-lg flex items-center`} Icon={ChevronRightIcon}/>
+          <Image
+            src="/svgs/ShareIcon.svg"
+            alt="share"
+            width="20"
+            height="20"
+            className="cursor-pointer"
+            onClick={() => copyTOClipboard()}
+          />
+          <Toaster />
+          <Button
+            text="Read More"
+            onClick={handleClick}
+            className={`bg-darkBlue p-2 text-white rounded-lg flex items-center`}
+            Icon={ChevronRightIcon}
+          />
         </div>
       </div>
     </div>
