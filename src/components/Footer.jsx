@@ -3,29 +3,29 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="container-full  bg-darkBlue py-[10px]  md:p-[30px] px-3 mt-20">
+    <footer className="container-full  bg-darkBlue py-[10px]  md:p-[30px] px-3">
       <div className=" md:py-[10px] lg:pr-[60px] lg:py-[20px] flex justify-evenly flex-col-reverse md:flex-row ml-5 md:ml-0 ">
         <div className=" text-[20px] text-white flex justify-between md:justify-start flex-col w-[100%]  sm:flex-row  lg:w-[75%] lg:mr-[110px]">
           <div className="w-[50%] flex flex-col lg:flex-row justify-start">
             <div className="mt-2 md:mt-0 lg:ml-28">
-              <h5 className="font-semibold ">Pages</h5>
+              <h5 className="">Pages</h5>
               <ul className="font-extralight text-[19px] w-[80%]">
-                <li className="hover-underline-animation">
+                <li >
                   <Link href="/">Home</Link>
                 </li>
-                <li className=" hover-underline-animation">
+                <li >
                   <Link href="/about">About Us</Link>
                 </li>
-                <li className=" hover-underline-animation">
+                <li >
                   <Link href="/services">Services</Link>
                 </li>
-                <li className=" hover-underline-animation">
+                <li >
                   <Link href="/contact">Contact Us</Link>
                 </li>
-                <li className=" hover-underline-animation">
+                <li >
                   <Link href="/terms-conditions">Terms & Conditions</Link>
                 </li>
-                <li className=" hover-underline-animation">
+                <li >
                   <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
               </ul>
@@ -33,18 +33,18 @@ const Footer = () => {
             <div className="flex font-extralight text-[15px] lg:ml-5 lg:mt-8">
               <div>
                 <ul className="font-extralight text-[19px]">
-                  <li className=" hover-underline-animation">
+                  <li >
                     <Link href="/benefits-of-us-stocks">
                       Benefits of Investing in US Stocks
                     </Link>
                   </li>
-                  <li className=" hover-underline-animation">
+                  <li >
                     <Link href="/retirement-plan">Retirement Plan</Link>
                   </li>
-                  <li className=" hover-underline-animation">
+                  <li >
                     <Link href="/sip">SIP/Lumpsum Calculator</Link>
                   </li>
-                  <li className="hover-underline-animation">
+                  <li >
                     <Link href="/refund-cancellation-policy">
                       Refund & Cancellation Policy
                     </Link>
