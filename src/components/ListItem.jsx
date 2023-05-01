@@ -9,7 +9,7 @@ const ListItem = ({ itemname, data }) => {
       <div className="flex justify-center items-center">
         <Menu.Button
           onMouseEnter={({ target }) => console.log(target)}
-          className=" inline-flex w-full justify-center items-center text-base text-darkBlue font-semibold"
+          className=" inline-flex w-full justify-center items-center font-normal text-darkBlue text-base"
         >
           {itemname}
           <svg

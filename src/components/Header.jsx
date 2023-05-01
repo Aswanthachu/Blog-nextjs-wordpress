@@ -6,13 +6,12 @@ import { MutualFundItems,InvestingItems,DematAcItems } from "@/utils/datas";
 
 const Header = () => {
   
-
   return (
-    <div className="w-full flex py-5 justify-between sticky top-0 z-50 bg-white">
-      <div className="text-darkBlue text-2xl font-sans">
-        <span className="font-bold mx-1">KKS</span>
+    <div className="w-full flex py-3 md:py-5 justify-between items-center sticky top-0 z-50 bg-bgMain">
+      <div className="text-darkBlue text-lg md:text-2xl font-sans">
+        <span className="font-semibold md:mx-1">KKS</span>
         <span className="font-semibold mx-1">Capitals</span>
-        Blogs
+        <span className="font-light hidden md:inline">Blogs</span>
       </div>
       <div className="hidden lg:inline">
         <ul className="flex gap-14 font-semibold">
@@ -28,7 +27,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="lg:hidden">
-        <Image src='/svgs/HamburgerMenu.svg' alt="hamburger" width="64" height="64"/>
+        <Image src='/svgs/HamburgerMenu.svg' alt="hamburger" width="20" height="20"/>
       </div>
     </div>
   );
