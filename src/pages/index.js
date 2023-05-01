@@ -3,7 +3,6 @@ import BlogCard from "../components/BlogCard";
 
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
-
 export default function Home() {
   const handleClick = () => {
     console.log("hiii");
@@ -11,7 +10,7 @@ export default function Home() {
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
-      <div className="max-w-7xl mx-auto mt-10 flex flex-col items-center gap-16">
+      <div className="max-w-7xl mx-auto mt-10">
         <h1 className="text-xl font-semibold md:text-4xl md:font-medium my-10 lg:ml-12">
           Exclusive Blog
         </h1>
@@ -33,12 +32,14 @@ export default function Home() {
           <BlogCard />
           <BlogCard />
         </div>
-        <Button
-          text="Explore"
-          className={`bg-darkBlue flex items-center text-white p-3 rounded-lg`}
-          onClick={handleClick}
-          Icon={ChevronRightIcon}
-        />
+        <div className="w-full flex justify-center items-center mt-16">
+          <Button
+            text="Explore"
+            className={`bg-darkBlue flex items-center text-white p-3 rounded-lg`}
+            onClick={handleClick}
+            Icon={ChevronRightIcon}
+          />
+        </div>
       </div>
     </main>
   );
