@@ -37,7 +37,6 @@ export default function Home() {
             text="Explore"
             className={`bg-darkBlue flex items-center text-white p-3 rounded-lg`}
             onClick={handleClick}
-            Icon={ChevronRightIcon}
           />
         </div>
       </div>
