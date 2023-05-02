@@ -4,6 +4,6 @@
 
 @layer utilities{
     .post-content p{
-        @apply py-5 truncate;
+        @apply py-5 text-base truncate;
       }
 }

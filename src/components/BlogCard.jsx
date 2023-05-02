@@ -10,8 +10,8 @@ import Trending from "./Trending";
 const BlogCard = ({post}) => {
   const router = useRouter();
 
-  const handleClick = () => {
-    router.push("/fghjk");
+  const handleClick = (slug) => {
+    router.push(`/${slug}`);
   };
 
   const copyTOClipboard = (slug) => {
@@ -27,7 +27,7 @@ const BlogCard = ({post}) => {
     <div className="p-4 rounded-3xl bg-white max-w-xs max-h-[600px]">
       <div className="relative">
         <img
-          src={post.featuredImage.node.sourceUrl}
+          src={post?.featuredImage?.node?.sourceUrl}
           alt="test"
           className="object-fill w-full rounded-3xl h-[200px]"
         />
@@ -55,7 +55,7 @@ const BlogCard = ({post}) => {
           <Toaster />
           <Button
             text="Read More"
-            onClick={handleClick}
+            onClick={()=>handleClick(post.slug)}
             className={`bg-darkBlue p-2 text-white rounded-lg flex items-center hover:scale-110`}
             Icon={ChevronRightIcon}
           />
