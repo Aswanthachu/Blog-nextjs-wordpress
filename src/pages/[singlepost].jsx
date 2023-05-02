@@ -69,7 +69,7 @@ const singlepost = () => {
             <div className="w-full flex justify-center items-center mt-16">
               <Button
                 text="Explore"
-                className={`bg-darkBlue flex items-center text-white p-3 rounded-lg`}
+                className={`bg-darkBlue flex items-center text-white p-3 rounded-lg hover:scale-110`}
                 onClick={handleClick}
               />
             </div>

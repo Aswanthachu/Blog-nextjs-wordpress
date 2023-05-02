@@ -1,10 +1,21 @@
 import Button from "@/components/Button";
 import BlogCard from "../components/BlogCard";
 
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import RecentBlogCard from "@/components/RecentBlogCard";
+import { getAllPosts } from "@/lib/posts";
 
-export default function Home() {
+export async function getStaticProps() {
+  const allPosts = await getAllPosts();
+
+  return {
+    props: {
+      allPosts,
+    },
+  };
+}
+
+export default function Home({ allPosts }) {
+  console.log(allPosts);
   const handleClick = () => {
     console.log("hiii");
   };
