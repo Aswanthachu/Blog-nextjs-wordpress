@@ -7,16 +7,15 @@ import Button from "./Button";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Trending from "./Trending";
 
-const BlogCard = () => {
+const BlogCard = ({post}) => {
   const router = useRouter();
 
   const handleClick = () => {
-    console.log("hiii");
     router.push("/fghjk");
   };
 
-  const copyTOClipboard = () => {
-    // navigator.clipboard.writeText(referData?.referalCode);
+  const copyTOClipboard = (slug) => {
+    navigator.clipboard.writeText(`http:localhost:3000/${slug}`);
     toast.success("link copied to clipboard", {
       style: {
         boxShadow: "none",
@@ -25,22 +24,25 @@ const BlogCard = () => {
   };
 
   return (
-    <div className="p-4 rounded-3xl bg-white max-w-xs">
+    <div className="p-4 rounded-3xl bg-white max-w-xs max-h-[600px]">
       <div className="relative">
         <img
-          src="/images/test1.png"
+          src={post.featuredImage.node.sourceUrl}
           alt="test"
-          className="object-fill h-full w-full rounded-3xl "
+          className="object-fill w-full rounded-3xl h-[200px]"
         />
         <Trending small />
       </div>
-      <div className="my-2 px-2">
-        <h1 className="text-lg font-semibold">Lorem Ipsum</h1>
+      <div className="my-2 px-2 post-content">
+        <h1 className="text-lg font-semibold">{post.title}</h1>
+        {/*
         <p className="text-base">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s,
         </p>
+        */}
+        <div dangerouslySetInnerHTML={{__html:post.excerpt}} />
         <div className="my-3 flex justify-between">
           <Image
             src="/svgs/ShareIcon.svg"
@@ -48,7 +50,7 @@ const BlogCard = () => {
             width="20"
             height="20"
             className="cursor-pointer hover:scale-150"
-            onClick={() => copyTOClipboard()}
+            onClick={() => copyTOClipboard(post.slug)}
           />
           <Toaster />
           <Button

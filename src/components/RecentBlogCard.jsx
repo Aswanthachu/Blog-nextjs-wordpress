@@ -7,7 +7,7 @@ import Trending from "./Trending";
 const RecentBlogCard = () => {
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = ({post}) => {
     router.push("/fghjk");
   };
 
