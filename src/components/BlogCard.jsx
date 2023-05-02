@@ -1,36 +1,38 @@
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 import Button from "./Button";
 
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import Trending from "./Trending";
 
 const BlogCard = () => {
-  const router=useRouter();
+  const router = useRouter();
 
   const handleClick = () => {
     console.log("hiii");
-    router.push("/fghjk")
+    router.push("/fghjk");
   };
 
   const copyTOClipboard = () => {
     // navigator.clipboard.writeText(referData?.referalCode);
-    toast.success("link copied to clipboard",{
-        style: {
-            boxShadow:'none'
-          },
+    toast.success("link copied to clipboard", {
+      style: {
+        boxShadow: "none",
+      },
     });
   };
 
   return (
     <div className="p-4 rounded-3xl bg-white max-w-xs">
-      <div className="">
+      <div className="relative">
         <img
           src="/images/test1.png"
           alt="test"
           className="object-fill h-full w-full rounded-3xl "
         />
+        <Trending small />
       </div>
       <div className="my-2 px-2">
         <h1 className="text-lg font-semibold">Lorem Ipsum</h1>

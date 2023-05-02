@@ -2,12 +2,12 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import Button from "./Button";
+import Trending from "./Trending";
 
 const RecentBlogCard = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    console.log("hiii");
     router.push("/fghjk");
   };
 
@@ -27,12 +27,13 @@ const RecentBlogCard = () => {
           className={`flex bg-darkBlue p-3 rounded-lg items-center text-white gap-2`}
         />
       </div>
-      <div className="w-1/2">
+      <div className="w-1/2 relative">
         <img
           src="/images/test1.png"
           alt="test"
           className="object-fill h-full w-full rounded-3xl "
         />
+        <Trending large />
       </div>
     </div>
   );
