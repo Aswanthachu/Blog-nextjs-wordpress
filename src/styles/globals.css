@@ -4,6 +4,21 @@
 
 @layer utilities{
     .post-content p{
-        @apply py-5 text-base truncate;
+        @apply py-5 text-base;
+      }
+      .post-content a{
+        @apply underline text-blue-400 mx-1;
+      }
+      .post-content ul{
+        @apply pb-4 list-disc list-inside;
+      }
+      .post-content figure{
+        @apply pb-4 mx-auto;
+      }
+      .post-content figure figcaption{
+        @apply  py-2;
+      }
+      .post-content blockquote{
+        @apply italic;
       }
 }
