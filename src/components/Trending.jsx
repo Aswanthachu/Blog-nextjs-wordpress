@@ -3,7 +3,7 @@ const Trending = ({ small }) => {
     <div
       className={`flex absolute ${
         small ? "top-3 right-3" : "top-5 right-5"
-      } text-white gap-2`}
+      } text-white gap-2 hover:scale-125`}
     >
       <svg
         viewBox="0 0 30 18"

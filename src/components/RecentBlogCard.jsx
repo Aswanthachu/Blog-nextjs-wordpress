@@ -12,7 +12,7 @@ const RecentBlogCard = () => {
   };
 
   return (
-    <div className="w-full px-16 my-16 flex justify-between items-center gap-10">
+    <div className="w-full px-16 my-16  justify-between items-center gap-10 hidden lg:flex">
       <div className="w-1/2 space-y-6">
         <h1 className="text-xl font-semibold">| Blog</h1>
         <h1 className="text-5xl font-bold">Why Stock Market</h1>
@@ -24,7 +24,7 @@ const RecentBlogCard = () => {
         <Button
           text="Read More"
           onClick={handleClick}
-          className={`flex bg-darkBlue p-3 rounded-lg items-center text-white gap-2`}
+          className={`flex bg-darkBlue p-3 rounded-lg items-center text-white gap-2 hover:scale-110`}
         />
       </div>
       <div className="w-1/2 relative">

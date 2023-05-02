@@ -47,14 +47,14 @@ const BlogCard = () => {
             alt="share"
             width="20"
             height="20"
-            className="cursor-pointer"
+            className="cursor-pointer hover:scale-150"
             onClick={() => copyTOClipboard()}
           />
           <Toaster />
           <Button
             text="Read More"
             onClick={handleClick}
-            className={`bg-darkBlue p-2 text-white rounded-lg flex items-center`}
+            className={`bg-darkBlue p-2 text-white rounded-lg flex items-center hover:scale-110`}
             Icon={ChevronRightIcon}
           />
         </div>
