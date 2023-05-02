@@ -1,13 +1,12 @@
-
 import Button from "@/components/Button";
 import BlogCard from "../components/BlogCard";
 
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import RecentBlogCard from "@/components/RecentBlogCard";
 
 export default function Home() {
   const handleClick = () => {
     console.log("hiii");
-    
   };
 
   return (
@@ -16,6 +15,7 @@ export default function Home() {
         <h1 className="text-xl font-semibold md:text-4xl md:font-medium my-10 lg:ml-12">
           Exclusive Blog
         </h1>
+        <RecentBlogCard />
         <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
           <BlogCard />
           <BlogCard />
