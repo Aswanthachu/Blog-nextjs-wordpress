@@ -1,25 +1,31 @@
 import graphqlRequest from "./graphqlRequest";
 
-export async function getAllPosts() {
+export async function getPostList(after) {
   const query = {
-    query: `query getPageSlug {
-        posts {
-          nodes {
-            slug
-            title
-            featuredImage {
-              node {
-                sourceUrl
-              }
+    query: `query getPostList {
+      posts(where: {orderby: {field: DATE, order: DESC}}, after: "${after}", first: 9) {
+        nodes {
+          slug
+          title
+          featuredImage {
+            node {
+              sourceUrl
             }
-            excerpt
           }
+          excerpt
         }
-      }`,
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+      }
+    }`,
   };
 
   const resJson = await graphqlRequest(query);
-  return resJson.data.posts.nodes;
+  return resJson.data.posts;
 }
 export async function getPostSlugs() {
   const query = {

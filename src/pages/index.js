@@ -1,12 +1,12 @@
-import Button from "@/components/Button";
 import BlogCard from "../components/BlogCard";
 
 import RecentBlogCard from "@/components/RecentBlogCard";
-import { getAllPostByCategories, getAllPosts } from "@/lib/posts";
+import { getAllPostByCategories, getPostList } from "@/lib/posts";
 import { useEffect, useState } from "react";
+import ReadMore from "@/components/ReadMore";
 
 export async function getStaticProps() {
-  const allPosts = await getAllPosts();
+  const allPosts = await getPostList(null);
 
   return {
     props: {
@@ -18,9 +18,7 @@ export async function getStaticProps() {
 export default function Home({ allPosts, selectedCategory }) {
   const [windowSize, setWindowSize] = useState();
   const [categoryWisePost, setCategoryWisePost] = useState();
-  const handleClick = () => {
-    
-  };
+  const [posts, setPosts] = useState(allPosts);
 
   useEffect(() => {
     setWindowSize(window.innerWidth);
@@ -41,11 +39,11 @@ export default function Home({ allPosts, selectedCategory }) {
     <main className="w-full border-t-2 border-darkBlue pb-10">
       <div className="max-w-7xl mx-auto mt-16">
         {windowSize > 1024 && !selectedCategory && (
-          <RecentBlogCard post={allPosts[0]} />
+          <RecentBlogCard post={posts.nodes[0]} />
         )}
         <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
           {!selectedCategory &&
-            allPosts.map((post, index) => (
+            posts.nodes.map((post, index) => (
               <>
                 {!(index === 0 && windowSize > 1024) && (
                   <BlogCard post={post} key={index} />
@@ -57,13 +55,7 @@ export default function Home({ allPosts, selectedCategory }) {
               <BlogCard post={post} key={index} />
             ))}
         </div>
-        <div className="w-full flex justify-center items-center mt-16">
-          <Button
-            text="Explore"
-            className={`bg-darkBlue flex items-center text-white p-3 rounded-lg hover:scale-110`}
-            onClick={handleClick}
-          />
-        </div>
+        <ReadMore posts={posts} setPosts={setPosts} />
       </div>
     </main>
   );
