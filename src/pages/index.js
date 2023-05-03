@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ReadMore from "@/components/ReadMore";
 
 export async function getStaticProps() {
-  const allPosts = await getPostList(null);
+  const allPosts = await getPostList();
 
   return {
     props: {

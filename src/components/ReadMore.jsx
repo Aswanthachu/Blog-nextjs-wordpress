@@ -3,19 +3,21 @@ import { getPostList } from "@/lib/posts";
 
 const ReadMore = ({ posts, setPosts }) => {
   const handleClick = async () => {
-    const morePosts = await getPostList(posts.pageInfo.endCursor);
+    if (posts.pageInfo.hasNextPage) {
+      const morePosts = await getPostList(posts.pageInfo.endCursor);
 
-    const updatedPosts = {
-      ...posts,
-    };
-    console.log(updatedPosts);
-    console.log(morePosts);
-    if (morePosts) {
-      updatedPosts.nodes = updatedPosts?.nodes?.concat(morePosts?.nodes);
-      updatedPosts.pageInfo = morePosts?.pageInfo;
+      const updatedPosts = {
+        ...posts,
+      };
+      console.log(updatedPosts);
+      console.log(morePosts);
+      if (morePosts) {
+        updatedPosts.nodes = updatedPosts?.nodes?.concat(morePosts?.nodes);
+        updatedPosts.pageInfo = morePosts?.pageInfo;
+      }
+      console.log(updatedPosts);
+      setPosts(updatedPosts);
     }
-    console.log(updatedPosts);
-    setPosts(updatedPosts);
   };
 
   return (

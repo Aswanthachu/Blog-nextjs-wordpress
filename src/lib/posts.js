@@ -1,6 +1,7 @@
 import graphqlRequest from "./graphqlRequest";
 
 export async function getPostList(after) {
+  
   const query = {
     query: `query getPostList {
       posts(where: {orderby: {field: DATE, order: DESC}}, after: "${after}", first: 9) {
