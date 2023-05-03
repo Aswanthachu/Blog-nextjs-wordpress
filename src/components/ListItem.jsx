@@ -8,7 +8,7 @@ const ListItem = ({ itemname, data }) => {
     <Menu as="div" className="relative inline-block text-left">
       <div className="flex justify-center items-center">
         <Menu.Button
-          onMouseEnter={({ target }) => console.log(target)}
+          onMouseEnter={({ target }) => target.click()}
           className=" inline-flex w-full justify-center items-center font-semibold text-black text-base"
         >
           {itemname}
