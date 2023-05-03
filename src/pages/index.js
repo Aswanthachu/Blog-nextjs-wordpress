@@ -26,6 +26,8 @@ export default function Home({ allPosts }) {
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
       <div className="max-w-7xl mx-auto mt-16">
+      
+      
         {windowSize > 640 && <RecentBlogCard post={posts.nodes[0]} />}
         <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
           {posts.nodes.map((post, index) => {

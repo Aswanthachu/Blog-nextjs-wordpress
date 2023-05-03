@@ -25,6 +25,7 @@ export async function getPostList({after,no}) {
   };
 
   const resJson = await graphqlRequest(query);
+  console.log(resJson.data);
   return resJson.data.posts;
 }
 export async function getPostSlugs() {

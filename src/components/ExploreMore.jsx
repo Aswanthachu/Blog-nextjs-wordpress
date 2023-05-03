@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import { getAllPostByCategories, getPostList } from "@/lib/posts";
 
-const ExploreMore = ({ posts, setPosts, id,no }) => {
+const ExploreMore = ({ posts, setPosts, id, no }) => {
   console.log(id);
   const handleClick = async () => {
     if (posts.pageInfo.hasNextPage) {
@@ -9,11 +9,11 @@ const ExploreMore = ({ posts, setPosts, id,no }) => {
       if (id) {
         morePosts = await getAllPostByCategories({
           id: id,
-          no:no,
+          no: no,
           after: posts.pageInfo.endCursor,
         });
       } else {
-        morePosts = await getPostList(posts.pageInfo.endCursor);
+        morePosts = await getPostList({ after: posts.pageInfo.endCursor, no: 9 });
       }
 
       const updatedPosts = {

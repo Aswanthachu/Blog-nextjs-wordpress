@@ -14,6 +14,7 @@ const RecentBlogCard = ({ post }) => {
 
   return (
     <div className="w-full   my-8 lg:my-16 bg-white lg:bg-inherit justify-between items-center hidden md:flex rounded-3xl">
+      
       <div className="hidden lg:flex px-16 gap-10">
         <div className="w-1/2 space-y-6 post-content">
           <h1 className="text-xl font-semibold">| Blog</h1>
@@ -43,9 +44,8 @@ const RecentBlogCard = ({ post }) => {
           />
           <Trending large />
         </div>
-        <div className="space-y-6 post-content">
-          <h1 className="text-xl font-semibold">| Blog</h1>
-          <h1 className="text-5xl font-bold">{post.title}</h1>
+        <div className="space-y-6 post-content ">
+          <h1 className="text-5xl font-bold my-5">{post.title}</h1>
           <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
           <Button
             text="Read More"
