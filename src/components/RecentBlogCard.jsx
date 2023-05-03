@@ -13,8 +13,8 @@ const RecentBlogCard = ({ post }) => {
   console.log(post);
 
   return (
-    <div className="w-full px-16 my-16  justify-between items-center gap-10 hidden lg:flex">
-      <div className="w-1/2 space-y-6 post-content">
+    <div className="w-full px-16 my-16 bg-white justify-between items-center gap-10 hidden md:flex flex-col">
+      {/*<div className="w-1/2 space-y-6 post-content">
         <h1 className="text-xl font-semibold">| Blog</h1>
         <h1 className="text-5xl font-bold">{post.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
@@ -31,6 +31,12 @@ const RecentBlogCard = ({ post }) => {
           className="object-fill h-full w-full max-h-[400px] rounded-3xl"
         />
         <Trending large />
+      </div>
+      */}
+      <div>
+        
+      </div>
+      <div>
       </div>
     </div>
   );
