@@ -3,7 +3,7 @@ import BlogCard from "../components/BlogCard";
 import RecentBlogCard from "@/components/RecentBlogCard";
 import { getAllPostByCategories, getPostList } from "@/lib/posts";
 import { useEffect, useState } from "react";
-import ReadMore from "@/components/ReadMore";
+import ExploreMore from "@/components/ExploreMore";
 
 export async function getStaticProps() {
   const allPosts = await getPostList();
@@ -62,13 +62,14 @@ export default function Home({ allPosts, selectedCategory }) {
         </div>
         {!selectedCategory
           ? posts?.pageInfo?.hasNextPage && (
-              <ReadMore posts={posts} setPosts={setPosts} />
+              <ExploreMore posts={posts} setPosts={setPosts} no={9}/>
             )
           : categoryWisePost?.pageInfo?.hasNextPage && (
-              <ReadMore
+              <ExploreMore
                 posts={categoryWisePost}
                 setPosts={setCategoryWisePost}
                 id={selectedCategory.id}
+                no={9}
               />
             )}
       </div>

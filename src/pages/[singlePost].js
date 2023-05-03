@@ -1,7 +1,8 @@
 import BlogCard from "@/components/BlogCard";
 import Button from "@/components/Button";
+import ExploreMore from "@/components/ExploreMore";
 import {
-  getPostList,
+  getAllPostByCategories,
   getPostSlugs,
   getSinglePost,
 } from "@/lib/posts";
@@ -30,16 +31,16 @@ export async function getStaticPaths() {
 
 const SinglePost = ({ post }) => {
   const [posts, setPosts] = useState();
-  const handleClick = () => {
-    console.log("hiii");
-  };
 
   useEffect(() => {
-    async function fetchAllPost() {
-      const Posts = await getPostList();
+    async function fetchSuggestedPost() {
+      const Posts = await getAllPostByCategories({
+        id: post?.categories?.nodes[0]?.id,
+        no: 6,
+      });
       setPosts(Posts);
     }
-    fetchAllPost();
+    fetchSuggestedPost();
   }, []);
 
   return (
@@ -59,13 +60,14 @@ const SinglePost = ({ post }) => {
                 <BlogCard post={post} key={index} />
               ))}
             </div>
-            <div className="w-full flex justify-center items-center mt-16">
-              <Button
-                text="Explore"
-                className={`bg-darkBlue flex items-center text-white p-3 rounded-lg hover:scale-110`}
-                onClick={handleClick}
+            {posts?.pageInfo?.hasNextPage && (
+              <ExploreMore
+                posts={posts}
+                setPosts={setPosts}
+                id={post?.categories?.nodes[0]?.id}
+                no={6}
               />
-            </div>
+            )}
           </div>
         </div>
       </section>

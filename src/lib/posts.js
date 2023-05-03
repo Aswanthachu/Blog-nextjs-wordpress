@@ -50,12 +50,12 @@ export async function getSinglePost(slug) {
           content(format: RENDERED)
           categories {
             nodes {
-              slug
+              id
             }
           }
         }
       }
-    }`,
+    }`
   };
 
   const resJson = await graphqlRequest(query);

@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import { getAllPostByCategories, getPostList } from "@/lib/posts";
 
-const ReadMore = ({ posts, setPosts, id }) => {
+const ExploreMore = ({ posts, setPosts, id,no }) => {
   console.log(id);
   const handleClick = async () => {
     if (posts.pageInfo.hasNextPage) {
@@ -9,7 +9,7 @@ const ReadMore = ({ posts, setPosts, id }) => {
       if (id) {
         morePosts = await getAllPostByCategories({
           id: id,
-          no: 9,
+          no:no,
           after: posts.pageInfo.endCursor,
         });
       } else {
@@ -39,4 +39,4 @@ const ReadMore = ({ posts, setPosts, id }) => {
   );
 };
 
-export default ReadMore;
+export default ExploreMore;
