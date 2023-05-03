@@ -158,3 +158,42 @@ export async function searchPosts(searchQuery) {
     return resJson.data.posts;
   }
 }
+
+export async function searchPostsByCategory({ searchQuery, slug }) {
+  console.log(searchQuery, slug);
+  const query = {
+    query: `query searchPostsByCategory {
+      category(id: "${slug}") {
+        id
+        posts(
+          after: "null"
+          first: 10
+          where: {search: "${searchQuery}", orderby: {field: DATE, order: DESC}}
+        ) {
+          nodes {
+            slug
+            title
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+            excerpt
+          }
+          pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+          }
+        }
+      }
+    }`,
+  };
+
+  if (searchQuery) {
+    const resJson = await graphqlRequest(query);
+    console.log(resJson.data.posts);
+    return resJson.data.category.posts;
+  }
+}

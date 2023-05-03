@@ -1,7 +1,7 @@
-import { searchPosts } from "@/lib/posts";
+import { searchPosts, searchPostsByCategory } from "@/lib/posts";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SearchComponent = ({ search, setSearch, setPosts }) => {
   const router = useRouter();
@@ -13,8 +13,18 @@ const SearchComponent = ({ search, setSearch, setPosts }) => {
       if (router.pathname === "/") {
         const searchedPosts = await searchPosts(searchQuery);
         setPosts(searchedPosts);
+        setSearch(false);
       } else {
         console.log("hello");
+        const path = router.asPath;
+        const parts = path.split("/");
+        const slug = parts[parts.length - 1];
+        const searchedPosts = await searchPostsByCategory({
+          searchQuery,
+          slug,
+        });
+        setPosts(searchedPosts);
+        setSearch(false);
       }
     }
   };

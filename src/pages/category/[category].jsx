@@ -28,12 +28,10 @@ export async function getStaticPaths() {
   };
 }
 
-const Category = ({ categoryPost }) => {
-  const [posts, setPosts] = useState(categoryPost);
-
+const Category = ({ categoryPost, posts, setPosts }) => {
   useEffect(() => {
     setPosts(categoryPost);
-  }, [categoryPost]);
+  }, []);
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
