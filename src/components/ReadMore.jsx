@@ -1,21 +1,29 @@
 import Button from "@/components/Button";
-import { getPostList } from "@/lib/posts";
+import { getAllPostByCategories, getPostList } from "@/lib/posts";
 
-const ReadMore = ({ posts, setPosts }) => {
+const ReadMore = ({ posts, setPosts, id }) => {
+  console.log(id);
   const handleClick = async () => {
     if (posts.pageInfo.hasNextPage) {
-      const morePosts = await getPostList(posts.pageInfo.endCursor);
+      let morePosts;
+      if (id) {
+        morePosts = await getAllPostByCategories({
+          id: id,
+          no: 9,
+          after: posts.pageInfo.endCursor,
+        });
+      } else {
+        morePosts = await getPostList(posts.pageInfo.endCursor);
+      }
 
       const updatedPosts = {
         ...posts,
       };
-      console.log(updatedPosts);
-      console.log(morePosts);
+
       if (morePosts) {
         updatedPosts.nodes = updatedPosts?.nodes?.concat(morePosts?.nodes);
         updatedPosts.pageInfo = morePosts?.pageInfo;
       }
-      console.log(updatedPosts);
       setPosts(updatedPosts);
     }
   };

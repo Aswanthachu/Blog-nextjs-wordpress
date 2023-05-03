@@ -24,7 +24,7 @@ const BlogCard = ({post}) => {
   };
 
   return (
-    <div className="p-4 rounded-3xl bg-white max-w-xs max-h-[600px]">
+    <div className="p-4 rounded-3xl bg-white max-w-xs h-[550px] relative">
       <div className="relative">
         <img
           src={post?.featuredImage?.node?.sourceUrl}

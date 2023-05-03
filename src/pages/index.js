@@ -27,13 +27,15 @@ export default function Home({ allPosts, selectedCategory }) {
   useEffect(() => {
     if (selectedCategory) {
       async function fetchData() {
-        const categoryPost = await getAllPostByCategories(selectedCategory.id);
+        const categoryPost = await getAllPostByCategories({id:selectedCategory.id,no:9});
         console.log(categoryPost);
         setCategoryWisePost(categoryPost);
       }
       fetchData();
     }
   }, [selectedCategory]);
+
+  console.log(categoryWisePost);
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
@@ -51,11 +53,15 @@ export default function Home({ allPosts, selectedCategory }) {
               </>
             ))}
           {selectedCategory &&
-            categoryWisePost?.map((post, index) => (
+            categoryWisePost?.nodes?.map((post, index) => (
               <BlogCard post={post} key={index} />
             ))}
         </div>
-        <ReadMore posts={posts} setPosts={setPosts} />
+        {!selectedCategory ? 
+          <ReadMore posts={posts} setPosts={setPosts} /> :
+          <ReadMore posts={categoryWisePost} setPosts={setCategoryWisePost} id={selectedCategory.id} />
+        }
+        
       </div>
     </main>
   );

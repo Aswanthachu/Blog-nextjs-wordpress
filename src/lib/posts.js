@@ -1,7 +1,6 @@
 import graphqlRequest from "./graphqlRequest";
 
 export async function getPostList(after) {
-  
   const query = {
     query: `query getPostList {
       posts(where: {orderby: {field: DATE, order: DESC}}, after: "${after}", first: 9) {
@@ -49,6 +48,11 @@ export async function getSinglePost(slug) {
           slug
           title
           content(format: RENDERED)
+          categories {
+            nodes {
+              slug
+            }
+          }
         }
       }
     }`,
@@ -75,12 +79,12 @@ export async function getAllCategories(slug) {
   return resJson.data.categories.nodes;
 }
 
-export async function getAllPostByCategories(id) {
+export async function getAllPostByCategories({after,id,no}) {
   const query = {
     query: `query getAllPostByCategories {
       category(id: "${id}") {
         id
-        posts {
+        posts(after: "${after}", first: ${no}) {
           nodes {
             slug
             featuredImage {
@@ -91,11 +95,17 @@ export async function getAllPostByCategories(id) {
             excerpt(format: RENDERED)
             title
           }
+          pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+          }
         }
       }
     }`,
   };
 
   const resJson = await graphqlRequest(query);
-  return resJson.data.category.posts.nodes;
+  return resJson.data.category.posts;
 }

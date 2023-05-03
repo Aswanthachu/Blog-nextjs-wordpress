@@ -1,7 +1,7 @@
 import BlogCard from "@/components/BlogCard";
 import Button from "@/components/Button";
 import {
-  getAllPosts,
+  getPostList,
   getPostSlugs,
   getSinglePost,
 } from "@/lib/posts";
@@ -9,7 +9,6 @@ import React, { useEffect, useState } from "react";
 
 export async function getStaticProps({ params }) {
   const post = await getSinglePost(params.singlePost);
-  console.log(post);
   return {
     props: {
       post,
@@ -37,7 +36,7 @@ const SinglePost = ({ post }) => {
 
   useEffect(() => {
     async function fetchAllPost() {
-      const Posts = await getAllPosts();
+      const Posts = await getPostList();
       setPosts(Posts);
     }
     fetchAllPost();
@@ -56,7 +55,7 @@ const SinglePost = ({ post }) => {
               | More Blogs
             </h1>
             <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
-              {posts?.map((post, index) => (
+              {posts?.nodes?.map((post, index) => (
                 <BlogCard post={post} key={index} />
               ))}
             </div>
