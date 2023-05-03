@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
+import Link from "next/link";
+import SearchComponent from "./SearchComponent";
 {
   /*
 import ListItem from "./ListItem";
@@ -14,6 +16,8 @@ const Header = () => {
   const router = useRouter();
   const [categories, setCategories] = useState();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [search, setSearch] = useState(false);
+
   const handleClick = () => setShowMobileMenu(!showMobileMenu);
 
   useEffect(() => {
@@ -25,49 +29,51 @@ const Header = () => {
   }, []);
 
   const handleSelectCategory = (c) => {
-    handleClick();
+    setShowMobileMenu(false);
     router.push(`/category/${c.id}`);
   };
 
   return (
     <>
       <div className="w-full flex py-3 md:py-5 justify-between items-center sticky top-0 z-40 bg-bgMain">
-        <div className="text-darkBlue text-lg md:text-2xl font-sans">
+        <Link href="/" className="text-darkBlue text-lg md:text-2xl font-sans">
           <span className="font-semibold md:mx-1">KKS</span>
           <span className="font-semibold mx-1">Capitals</span>
           <span className="font-light hidden md:inline">Blogs</span>
-        </div>
+        </Link>
         <div className="hidden lg:inline">
           <ul className="flex gap-14 font-semibold items-center">
-            {categories?.map((c, index, arr) => {
-              if (arr.length <= 3 || index < 3) {
-                console.log("jii");
-
-                return (
-                  <li
-                    key={index}
-                    className="p-3 hover:cursor-pointer"
-                    onClick={() => handleSelectCategory(c)}
-                  >
-                    {c.name}
-                  </li>
-                );
-              }
-            })}
-            {categories?.length > 3 && (
-              <ListItem itemname="More" data={categories.slice(3)} />
+            {!search ? (
+              <>
+                {categories?.map((c, index, arr) => {
+                  if (arr.length <= 3 || index < 3) {
+                    return (
+                      <li
+                        key={index}
+                        className="p-3 hover:cursor-pointer"
+                        onClick={() => handleSelectCategory(c)}
+                      >
+                        {c.name}
+                      </li>
+                    );
+                  }
+                })}
+                {categories?.length > 3 && (
+                  <ListItem itemname="More" data={categories.slice(3)} />
+                )}
+                <Image
+                  src="/svgs/Search.svg"
+                  alt="search"
+                  width="40"
+                  height="40"
+                  className="p-2 hover:cursor-pointer"
+                  onClick={() => setSearch(true)}
+                />
+              </>
+            ) : (
+              <SearchComponent search={search} setSearch={setSearch}/>
             )}
-            {/*
-          <li>
-        <ListItem itemname="Mutual Funds" data={MutualFundItems}/>
-          </li>
-          <li>
-         <ListItem itemname="Investing" data={InvestingItems}/>
-          </li>
-          <li>
-    <ListItem itemname="Demat Account" data={DematAcItems}/>
-          </li>
-        */}
+ 
           </ul>
         </div>
 
@@ -99,7 +105,7 @@ const Header = () => {
                 <li
                   key={index}
                   className={`flex px-6 py-3  w-full  cursor-pointer items-center`}
-                  onClick={()=> handleSelectCategory(list)}
+                  onClick={() => handleSelectCategory(list)}
                 >
                   <p className={`text-sm text-white`}>{list.name}</p>
                 </li>
@@ -111,8 +117,8 @@ const Header = () => {
             alt="close"
             width="70"
             height="70"
-            className="absolute top-5 right-5 p-2"
-            onClick={()=>handleClick()}
+            className="absolute top-1 right-1 md:top-5 md:right-5 p-3 md:p-2"
+            onClick={() => handleClick()}
           />
         </div>
       </div>
@@ -121,3 +127,16 @@ const Header = () => {
 };
 
 export default Header;
+
+
+           {/*
+          <li>
+        <ListItem itemname="Mutual Funds" data={MutualFundItems}/>
+          </li>
+          <li>
+         <ListItem itemname="Investing" data={InvestingItems}/>
+          </li>
+          <li>
+    <ListItem itemname="Demat Account" data={DematAcItems}/>
+          </li>
+        */}
