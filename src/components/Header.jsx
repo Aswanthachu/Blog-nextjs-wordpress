@@ -1,5 +1,6 @@
 import { getAllCategories } from "@/lib/posts";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 {
   /*
@@ -8,7 +9,8 @@ import { MutualFundItems,InvestingItems,DematAcItems } from "@/utils/datas";
 */
 }
 
-const Header = ({setSelectedCategory}) => {
+const Header = () => {
+  const router = useRouter();
   const [categories, setCategories] = useState();
 
   useEffect(() => {
@@ -19,11 +21,11 @@ const Header = ({setSelectedCategory}) => {
     fetchData();
   }, []);
 
+  const handleSelectCategory = (c) => {
+    console.log(c);
+    router.push(`/category/${c.id}`);
+  };
 
-  const handleSelectCategory=(c)=>{
-    setSelectedCategory(c);
-  }
-  
   return (
     <div className="w-full flex py-3 md:py-5 justify-between items-center sticky top-0 z-50 bg-bgMain">
       <div className="text-darkBlue text-lg md:text-2xl font-sans">
@@ -33,10 +35,15 @@ const Header = ({setSelectedCategory}) => {
       </div>
       <div className="hidden lg:inline">
         <ul className="flex gap-14 font-semibold">
-
-        {categories?.map((c,index)=>(
-          <li key={index} className="p-3 hover:cursor-pointer" onClick={()=>handleSelectCategory(c)}>{c.name}</li>
-        ))}
+          {categories?.map((c, index) => (
+            <li
+              key={index}
+              className="p-3 hover:cursor-pointer"
+              onClick={() => handleSelectCategory(c)}
+            >
+              {c.name}
+            </li>
+          ))}
 
           {/*
           <li>

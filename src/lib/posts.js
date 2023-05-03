@@ -62,12 +62,11 @@ export async function getSinglePost(slug) {
   return resJson.data.posts.nodes[0];
 }
 
-export async function getAllCategories(slug) {
+export async function getAllCategories() {
   const query = {
     query: `query getAllCategories {
       categories {
         nodes {
-          slug
           name
           id
         }
@@ -78,6 +77,23 @@ export async function getAllCategories(slug) {
   const resJson = await graphqlRequest(query);
   return resJson.data.categories.nodes;
 }
+
+export async function getCategorySlugs() {
+  const query = {
+    query: `query getCategorySlugs {
+      categories {
+        nodes {
+          id
+        }
+      }
+    }`,
+  };
+
+  const resJson = await graphqlRequest(query);
+  return resJson.data.categories.nodes;
+}
+
+
 
 export async function getAllPostByCategories({after,id,no}) {
   const query = {
