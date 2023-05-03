@@ -29,8 +29,7 @@ export async function getStaticPaths() {
   };
 }
 
-const SinglePost = ({ post }) => {
-  const [posts, setPosts] = useState();
+const SinglePost = ({ post,posts,setPosts }) => {
 
   useEffect(() => {
     async function fetchSuggestedPost() {
