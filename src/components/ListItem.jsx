@@ -9,7 +9,7 @@ const ListItem = ({ itemname, data }) => {
       <div className="flex justify-center items-center">
         <Menu.Button
           onMouseEnter={({ target }) => console.log(target)}
-          className=" inline-flex w-full justify-center items-center font-normal text-darkBlue text-base"
+          className=" inline-flex w-full justify-center items-center font-semibold text-black text-base"
         >
           {itemname}
           <svg
@@ -42,7 +42,7 @@ const ListItem = ({ itemname, data }) => {
             <Menu.Item>
               <>
                 {data.map((i,index,arr) => (
-                  <Link key={i.id} href={`${i.link}`} className={`flex ${arr.length - 1 === index ? "":"border-b"} border-darkBlue px-5 py-2 w-full text-sm text-darkBlue font-semibold font-main`}>
+                  <Link key={i.id} href={`/category/${i.id}`} className={`flex ${arr.length - 1 === index ? "":"border-b"} border-darkBlue px-5 py-2 w-full text-sm font-semibold text-black font-main`}>
                     {i.name}
                   </Link>
                 ))}

@@ -32,7 +32,6 @@ export default function Home({ allPosts }) {
         <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
           {posts.nodes.map((post, index) => {
             if ((index === 0 && windowSize > 640)) {
-              console.log("hii");
               return;
             }else{
               return <BlogCard post={post} key={index} />;

@@ -2,6 +2,7 @@ import { getAllCategories } from "@/lib/posts";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ListItem from "./ListItem";
 {
   /*
 import ListItem from "./ListItem";
@@ -34,17 +35,25 @@ const Header = () => {
         <span className="font-light hidden md:inline">Blogs</span>
       </div>
       <div className="hidden lg:inline">
-        <ul className="flex gap-14 font-semibold">
-          {categories?.map((c, index) => (
-            <li
-              key={index}
-              className="p-3 hover:cursor-pointer"
-              onClick={() => handleSelectCategory(c)}
-            >
-              {c.name}
-            </li>
-          ))}
+        <ul className="flex gap-14 font-semibold items-center">
+          {categories?.map((c, index, arr) => {
+            if (arr.length <= 3 || index < 3) {
+              console.log("jii");
 
+              return (
+                <li
+                  key={index}
+                  className="p-3 hover:cursor-pointer"
+                  onClick={() => handleSelectCategory(c)}
+                >
+                  {c.name}
+                </li>
+              );
+            }
+          })}
+          {categories?.length > 3 && (
+            <ListItem itemname="More" data={categories.slice(3)} />
+          )}
           {/*
           <li>
         <ListItem itemname="Mutual Funds" data={MutualFundItems}/>
