@@ -1,6 +1,6 @@
 import graphqlRequest from "./graphqlRequest";
 
-export async function getPostList({after,no}) {
+export async function getPostList({ after, no }) {
   const query = {
     query: `query getPostList {
       posts(where: {orderby: {field: DATE, order: DESC}}, after: "${after}", first:${no} ) {
@@ -25,7 +25,6 @@ export async function getPostList({after,no}) {
   };
 
   const resJson = await graphqlRequest(query);
-  console.log(resJson.data);
   return resJson.data.posts;
 }
 export async function getPostSlugs() {
@@ -56,7 +55,7 @@ export async function getSinglePost(slug) {
           }
         }
       }
-    }`
+    }`,
   };
 
   const resJson = await graphqlRequest(query);
@@ -94,9 +93,7 @@ export async function getCategorySlugs() {
   return resJson.data.categories.nodes;
 }
 
-
-
-export async function getAllPostByCategories({after,id,no}) {
+export async function getAllPostByCategories({ after, id, no }) {
   const query = {
     query: `query getAllPostByCategories {
       category(id: "${id}") {
@@ -125,4 +122,39 @@ export async function getAllPostByCategories({after,id,no}) {
 
   const resJson = await graphqlRequest(query);
   return resJson.data.category.posts;
+}
+
+export async function searchPosts(searchQuery) {
+  const query = {
+    query: `query searchPosts {
+  posts(
+    first: 10
+    where: {search: "${searchQuery}", orderby: {field: DATE, order: DESC}}
+    after: "null"
+  ) {
+    nodes {
+      slug
+      title
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      excerpt
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}`,
+  };
+
+  if (searchQuery) {
+    const resJson = await graphqlRequest(query);
+    console.log(resJson.data.posts);
+    return resJson.data.posts;
+  }
 }

@@ -12,7 +12,7 @@ import { MutualFundItems,InvestingItems,DematAcItems } from "@/utils/datas";
 */
 }
 
-const Header = () => {
+const Header = ({posts,setPosts}) => {
   const router = useRouter();
   const [categories, setCategories] = useState();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -71,7 +71,7 @@ const Header = () => {
                 />
               </>
             ) : (
-              <SearchComponent search={search} setSearch={setSearch}/>
+              <SearchComponent search={search} setSearch={setSearch} setPosts={setPosts}/>
             )}
  
           </ul>

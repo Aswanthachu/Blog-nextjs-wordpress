@@ -18,11 +18,11 @@ const RecentBlogCard = ({ post }) => {
       <div className="hidden lg:flex px-16 gap-10">
         <div className="w-1/2 space-y-6 post-content">
           <h1 className="text-xl font-semibold">| Blog</h1>
-          <h1 className="text-5xl font-bold">{post.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+          <h1 className="text-5xl font-bold">{post?.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: post?.excerpt }} />
           <Button
             text="Read More"
-            onClick={() => handleClick(post.slug)}
+            onClick={() => handleClick(post?.slug)}
             className={`flex bg-darkBlue p-3 rounded-lg items-center text-white gap-2 hover:scale-110`}
           />
         </div>
@@ -45,11 +45,11 @@ const RecentBlogCard = ({ post }) => {
           <Trending large />
         </div>
         <div className="space-y-6 post-content ">
-          <h1 className="text-5xl font-bold my-5">{post.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+          <h1 className="text-5xl font-bold my-5">{post?.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: post?.excerpt }} />
           <Button
             text="Read More"
-            onClick={() => handleClick(post.slug)}
+            onClick={() => handleClick(post?.slug)}
             className={`flex bg-darkBlue p-3 rounded-lg items-center text-white gap-2 hover:scale-110`}
           />
         </div>
