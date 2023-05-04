@@ -10,10 +10,10 @@ const NoPostAvailable = () => {
       <Image src="/svgs/Camera.svg" alt="no-post" height="100" width="100" />
       <h1 className="text-xl font-semibold">Oops! No Posts Available.</h1>
       <button
-        className="flex justify-between items-center w-fit gap-2 text-lg font-semibold border-2 border-gray-400 p-2 rounded-xl hover:scale-105"
+        className="flex justify-between items-center w-fit gap-2 text-md font-semibold border-2 border-gray-400 p-2 rounded-xl hover:scale-105"
         onClick={handleBackButtonClick}
       >
-        <Image src="/svgs/Back.svg" alt="back" width="30" height="30" />
+        <Image src="/svgs/Back.svg" alt="back" width="25" height="25" />
         Back
       </button>
     </div>

@@ -7,7 +7,7 @@ import Button from "./Button";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Trending from "./Trending";
 
-const BlogCard = ({post}) => {
+const BlogCard = ({ post }) => {
   const router = useRouter();
 
   const handleClick = (slug) => {
@@ -24,13 +24,23 @@ const BlogCard = ({post}) => {
   };
 
   return (
-    <div className="p-4 rounded-3xl bg-white max-w-xs h-[550px] relative">
-      <div className="relative">
-        <img
-          src={post?.featuredImage?.node?.sourceUrl}
-          alt="test"
-          className="object-fill w-full rounded-3xl h-[200px]"
-        />
+    <div className="p-3 rounded-3xl bg-white max-w-xs w-full h-[550px] relative">
+      <div >
+        {post?.featuredImage?.node?.sourceUrl ? (
+          <img
+            src={post?.featuredImage?.node?.sourceUrl}
+            alt="test"
+            className="object-fill w-full rounded-3xl h-[200px]"
+          />
+        ) : (
+          <Image
+            src="/images/NoImage.png"
+            alt="No-image"
+            height="400"
+            width="400"
+            className="object-fill w-full rounded-3xl h-[200px]"
+          />
+        )}
         <Trending small />
       </div>
       <div className="my-2 px-2 post-content">
@@ -42,7 +52,7 @@ const BlogCard = ({post}) => {
           since the 1500s,
         </p>
         */}
-        <div dangerouslySetInnerHTML={{__html:post.excerpt}} />
+        <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
         <div className="my-3 flex justify-between">
           <Image
             src="/svgs/ShareIcon.svg"
@@ -55,7 +65,7 @@ const BlogCard = ({post}) => {
           <Toaster />
           <Button
             text="Read More"
-            onClick={()=>handleClick(post.slug)}
+            onClick={() => handleClick(post.slug)}
             className={`bg-darkBlue p-2 text-white rounded-lg flex items-center hover:scale-110`}
             Icon={ChevronRightIcon}
           />

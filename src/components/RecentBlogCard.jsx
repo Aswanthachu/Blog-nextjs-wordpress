@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import Button from "./Button";
 import Trending from "./Trending";
+import Image from "next/image";
 
 const RecentBlogCard = ({ post }) => {
   const router = useRouter();
@@ -13,8 +14,7 @@ const RecentBlogCard = ({ post }) => {
   console.log(post);
 
   return (
-    <div className="w-full   my-8 lg:my-16 bg-white lg:bg-inherit justify-between items-center hidden md:flex rounded-3xl">
-      
+    <div className="w-full  my-8 lg:my-16 bg-white lg:bg-inherit justify-between items-center hidden lg:flex rounded-3xl">
       <div className="hidden lg:flex px-16 gap-10">
         <div className="w-1/2 space-y-6 post-content">
           <h1 className="text-xl font-semibold">| Blog</h1>
@@ -27,21 +27,39 @@ const RecentBlogCard = ({ post }) => {
           />
         </div>
         <div className="w-1/2 relative">
-          <img
-            src={post?.featuredImage?.node?.sourceUrl}
-            alt="test"
-            className="object-fill h-full w-full max-h-[400px] rounded-3xl"
-          />
+          {post?.featuredImage?.node?.sourceUrl ? (
+            <img
+              src={post?.featuredImage?.node?.sourceUrl}
+              alt="test"
+              className="object-fill h-full w-full max-h-[400px] rounded-3xl"
+            />
+          ) : (
+            <img
+              src="/images/NoImage.png"
+              alt="No-image"
+              className="object-cover w-[1000px]  max-h-[350px] rounded-3xl"
+            />
+          )}
           <Trending large />
         </div>
       </div>
       <div className="flex lg:hidden flex-col py-10 px-10  gap-5">
         <div className="w-full">
-          <img
-            src={post?.featuredImage?.node?.sourceUrl}
-            alt="test"
-            className="object-fill h-full w-full max-h-[400px] rounded-3xl"
-          />
+          {post?.featuredImage?.node?.sourceUrl ? (
+            <img
+              src={post?.featuredImage?.node?.sourceUrl}
+              alt="test"
+              className="object-fill h-full w-full max-h-[400px] rounded-3xl"
+            />
+          ) : (
+            <Image
+              src="/images/NoImage.png"
+              alt="No-image"
+              height="400"
+              width="400"
+              className="object-fill h-full w-[300px] max-h-[400px] rounded-3xl"
+            />
+          )}
           <Trending large />
         </div>
         <div className="space-y-6 post-content ">
