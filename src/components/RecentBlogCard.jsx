@@ -11,10 +11,9 @@ const RecentBlogCard = ({ post }) => {
   const handleClick = (slug) => {
     router.push(`/${slug}`);
   };
-  console.log(post);
 
   return (
-    <div className="w-full  my-8 lg:my-16 bg-white lg:bg-inherit justify-between items-center hidden lg:flex rounded-3xl">
+    <div className="w-full  my-8 lg:my-16 bg-white lg:bg-inherit justify-between items-center hidden md:flex rounded-3xl">
       <div className="hidden lg:flex px-16 gap-10">
         <div className="w-1/2 space-y-6 post-content">
           <h1 className="text-xl font-semibold">| Blog</h1>
@@ -57,7 +56,7 @@ const RecentBlogCard = ({ post }) => {
               alt="No-image"
               height="400"
               width="400"
-              className="object-fill h-full w-[300px] max-h-[400px] rounded-3xl"
+              className="object-fill h-full w-[800px] max-h-[400px] rounded-3xl"
             />
           )}
           <Trending large />
