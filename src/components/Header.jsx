@@ -12,7 +12,7 @@ import { MutualFundItems,InvestingItems,DematAcItems } from "@/utils/datas";
 */
 }
 
-const Header = ({posts,setPosts}) => {
+const Header = ({ posts, setPosts }) => {
   const router = useRouter();
   const [categories, setCategories] = useState();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -61,19 +61,25 @@ const Header = ({posts,setPosts}) => {
                 {categories?.length > 3 && (
                   <ListItem itemname="More" data={categories.slice(3)} />
                 )}
-                <Image
-                  src="/svgs/Search.svg"
-                  alt="search"
-                  width="40"
-                  height="40"
-                  className="p-2 hover:cursor-pointer"
-                  onClick={() => setSearch(true)}
-                />
+                {(router.asPath.length === 1 ||
+                  router.asPath.includes("category")) && (
+                    <Image
+                      src="/svgs/Search.svg"
+                      alt="search"
+                      width="40"
+                      height="40"
+                      className="p-2 hover:cursor-pointer"
+                      onClick={() => setSearch(true)}
+                    />
+                  )}
               </>
             ) : (
-              <SearchComponent search={search} setSearch={setSearch} setPosts={setPosts}/>
+              <SearchComponent
+                search={search}
+                setSearch={setSearch}
+                setPosts={setPosts}
+              />
             )}
- 
           </ul>
         </div>
 
@@ -128,8 +134,8 @@ const Header = ({posts,setPosts}) => {
 
 export default Header;
 
-
-           {/*
+{
+  /*
           <li>
         <ListItem itemname="Mutual Funds" data={MutualFundItems}/>
           </li>
@@ -139,4 +145,5 @@ export default Header;
           <li>
     <ListItem itemname="Demat Account" data={DematAcItems}/>
           </li>
-        */}
+        */
+}
