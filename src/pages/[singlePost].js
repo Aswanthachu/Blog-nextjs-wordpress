@@ -19,6 +19,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const postSlugs = await getPostSlugs();
+  console.log(postSlugs);
   return {
     paths: postSlugs.map((s) => ({
       params: {
@@ -29,10 +30,13 @@ export async function getStaticPaths() {
   };
 }
 
-const SinglePost = ({ post,posts,setPosts }) => {
+const SinglePost = ({ post }) => {
+
+  const [posts,setPosts]=useState();
 
   useEffect(() => {
     async function fetchSuggestedPost() {
+      console.log("hiii");
       const Posts = await getAllPostByCategories({
         id: post?.categories?.nodes[0]?.id,
         no: 6,
@@ -41,6 +45,8 @@ const SinglePost = ({ post,posts,setPosts }) => {
     }
     fetchSuggestedPost();
   }, []);
+
+  console.log(posts);
 
   return (
     <>
@@ -55,8 +61,8 @@ const SinglePost = ({ post,posts,setPosts }) => {
               | More Blogs
             </h1>
             <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
-              {posts?.nodes?.map((post, index) => (
-                <BlogCard post={post} key={index} />
+              {posts?.nodes?.map((p, index) => (
+                <BlogCard post={p} key={index} />
               ))}
             </div>
             {posts?.pageInfo?.hasNextPage && (

@@ -29,8 +29,8 @@ export async function getPostList({ after, no }) {
 }
 export async function getPostSlugs() {
   const query = {
-    query: `query getPostSlug {
-      posts {
+    query: `query getPostSlugs {
+      posts(after: "null", first: 100000000) {
         nodes {
           slug
         }
