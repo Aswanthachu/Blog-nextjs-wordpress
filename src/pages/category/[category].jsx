@@ -1,5 +1,6 @@
 import BlogCard from "@/components/BlogCard";
 import ExploreMore from "@/components/ExploreMore";
+import NoPostAvailable from "@/components/NoPostAvailable";
 import { getAllPostByCategories, getCategorySlugs } from "@/lib/posts";
 import { useEffect, useState } from "react";
 
@@ -35,16 +36,20 @@ const Category = ({ categoryPost, posts, setPosts }) => {
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
-      <div className="max-w-7xl mx-auto mt-16">
-        <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
-          {posts?.nodes?.map((post, index) => (
-            <BlogCard post={post} key={index} />
-          ))}
+      {posts?.nodes?.length > 0 ? (
+        <div className="max-w-7xl mx-auto mt-16">
+          <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
+            {posts?.nodes?.map((post, index) => (
+              <BlogCard post={post} key={index} />
+            ))}
+          </div>
+          {posts?.pageInfo?.hasNextPage && (
+            <ExploreMore posts={posts} setPosts={setPosts} no={9} />
+          )}
         </div>
-        {posts?.pageInfo?.hasNextPage && (
-          <ExploreMore posts={posts} setPosts={setPosts} no={9} />
-        )}
-      </div>
+      ) : (
+        <NoPostAvailable />
+      )}
     </main>
   );
 };
