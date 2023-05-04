@@ -12,7 +12,7 @@ import { MutualFundItems,InvestingItems,DematAcItems } from "@/utils/datas";
 */
 }
 
-const Header = ({ posts, setPosts,setSearchTerm }) => {
+const Header = ({ setPosts, setSearchTerm, pageLoading, setPageLoading }) => {
   const router = useRouter();
   const [categories, setCategories] = useState();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -29,6 +29,11 @@ const Header = ({ posts, setPosts,setSearchTerm }) => {
   }, []);
 
   const handleSelectCategory = (c) => {
+    if (pageLoading) {
+      setPageLoading(false);
+    } else {
+      setPageLoading(true);
+    }
     setShowMobileMenu(false);
     router.push(`/category/${c.id}`);
   };
@@ -36,13 +41,15 @@ const Header = ({ posts, setPosts,setSearchTerm }) => {
   return (
     <>
       <div className="w-full flex py-3 md:py-5 justify-between items-center sticky top-0 z-40 bg-bgMain">
-          <Link
-            href="/"
-            className={`text-darkBlue text-lg md:text-2xl font-sans ${search && "hidden md:flex"}`}
-          >
-            <span className="font-semibold md:mx-1">KKS</span>
-            <span className="font-semibold mx-1">Capitals</span>
-          </Link>
+        <Link
+          href="/"
+          className={`text-darkBlue text-lg md:text-2xl font-sans ${
+            search && "hidden md:flex"
+          }`}
+        >
+          <span className="font-semibold md:mx-1">KKS</span>
+          <span className="font-semibold mx-1">Capitals</span>
+        </Link>
 
         <div className="">
           <ul className="flex gap-5 lg:gap-14 font-semibold items-center">

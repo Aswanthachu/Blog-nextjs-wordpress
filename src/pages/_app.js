@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }) {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState();
   const [searchTerm, setSearchTerm] = useState();
+  const [pageLoading,setPageLoading]=useState(false);
 
   const pageProp = {
     posts,
@@ -15,6 +16,8 @@ export default function App({ Component, pageProps }) {
     setLoading,
     searchTerm,
     setSearchTerm,
+    pageLoading,
+    setPageLoading,
     ...pageProps,
   };
   return (
@@ -24,6 +27,8 @@ export default function App({ Component, pageProps }) {
           posts={posts}
           setPosts={setPosts}
           setSearchTerm={setSearchTerm}
+          pageLoading={pageLoading}
+          setPageLoading={setPageLoading}
         />
         <Component {...pageProp} />
       </div>

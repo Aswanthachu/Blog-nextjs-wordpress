@@ -5,10 +5,11 @@ import Button from "./Button";
 import Trending from "./Trending";
 import Image from "next/image";
 
-const RecentBlogCard = ({ post }) => {
+const RecentBlogCard = ({ post,setPageLoading }) => {
   const router = useRouter();
 
   const handleClick = (slug) => {
+    setPageLoading(true);
     router.push(`/${slug}`);
   };
 

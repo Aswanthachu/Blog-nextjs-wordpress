@@ -7,10 +7,11 @@ import Button from "./Button";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Trending from "./Trending";
 
-const BlogCard = ({ post }) => {
+const BlogCard = ({ post,setPageLoading }) => {
   const router = useRouter();
 
   const handleClick = (slug) => {
+    setPageLoading(true);
     router.push(`/${slug}`);
   };
 
