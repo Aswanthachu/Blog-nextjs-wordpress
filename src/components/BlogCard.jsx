@@ -24,8 +24,8 @@ const BlogCard = ({ post }) => {
   };
 
   return (
-    <div className="p-3 rounded-3xl bg-white max-w-xs w-full h-[550px] relative">
-      <div >
+    <div className="py-3 rounded-3xl bg-white max-w-xs w-full h-[550px] relative">
+      <div className="px-3">
         {post?.featuredImage?.node?.sourceUrl ? (
           <img
             src={post?.featuredImage?.node?.sourceUrl}
@@ -43,8 +43,8 @@ const BlogCard = ({ post }) => {
         )}
         <Trending small />
       </div>
-      <div className="my-2 px-2 post-content">
-        <h1 className="text-lg font-semibold">{post.title}</h1>
+      <div className="my-2  post-content">
+        <h1 className="text-lg font-semibold  px-3">{post.title}</h1>
         {/*
         <p className="text-base">
           Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -52,23 +52,27 @@ const BlogCard = ({ post }) => {
           since the 1500s,
         </p>
         */}
-        <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-        <div className="my-3 flex justify-between">
-          <Image
-            src="/svgs/ShareIcon.svg"
-            alt="share"
-            width="20"
-            height="20"
-            className="cursor-pointer hover:scale-150"
-            onClick={() => copyTOClipboard(post.slug)}
-          />
-          <Toaster />
-          <Button
-            text="Read More"
-            onClick={() => handleClick(post.slug)}
-            className={`bg-darkBlue p-2 text-white rounded-lg flex items-center hover:scale-110`}
-            Icon={ChevronRightIcon}
-          />
+        <div className="w-full px-3">
+          <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+        </div>
+        <div className="absolute bottom-0 w-full ">
+          <div className="mt-3 mb-6 flex justify-between px-3">
+            <Image
+              src="/svgs/ShareIcon.svg"
+              alt="share"
+              width="20"
+              height="20"
+              className="cursor-pointer hover:scale-150"
+              onClick={() => copyTOClipboard(post.slug)}
+            />
+            <Toaster />
+            <Button
+              text="Read More"
+              onClick={() => handleClick(post.slug)}
+              className={`bg-darkBlue p-2 text-white rounded-lg flex items-center hover:scale-110`}
+              Icon={ChevronRightIcon}
+            />
+          </div>
         </div>
       </div>
     </div>
