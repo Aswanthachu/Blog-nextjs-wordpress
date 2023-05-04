@@ -47,7 +47,7 @@ export default function Home({ allPosts, posts, setPosts }) {
           )}
         </div>
       ) : (
-        <NoPostAvailable />
+        <NoPostAvailable setPosts={setPosts}/>
       )}
     </main>
   );
