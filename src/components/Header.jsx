@@ -42,7 +42,6 @@ const Header = ({ posts, setPosts,setSearchTerm }) => {
           >
             <span className="font-semibold md:mx-1">KKS</span>
             <span className="font-semibold mx-1">Capitals</span>
-            <span className="font-light hidden md:inline">Blogs</span>
           </Link>
 
         <div className="">
