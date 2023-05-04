@@ -1,3 +1,4 @@
+
 import BlogCard from "../components/BlogCard";
 
 import RecentBlogCard from "@/components/RecentBlogCard";
@@ -7,8 +8,9 @@ import ExploreMore from "@/components/ExploreMore";
 import NoPostAvailable from "@/components/NoPostAvailable";
 
 export async function getStaticProps() {
-  const allPosts = await getPostList({ no: 10 });
 
+  let allPosts;
+    allPosts = await getPostList({ no: 10 });
   return {
     props: {
       allPosts,
@@ -16,7 +18,15 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPosts, posts, setPosts,loading,setLoading,searchTerm,setSearchTerm }) {
+export default function Home({
+  allPosts,
+  posts,
+  setPosts,
+  loading,
+  setLoading,
+  searchTerm,
+  setSearchTerm,
+}) {
   const [windowSize, setWindowSize] = useState();
 
   useEffect(() => {
@@ -27,13 +37,22 @@ export default function Home({ allPosts, posts, setPosts,loading,setLoading,sear
     setPosts(allPosts);
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(false);
-  },[posts]);
+  }, [posts]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setSearchTerm();
-  },[])
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
@@ -51,11 +70,19 @@ export default function Home({ allPosts, posts, setPosts,loading,setLoading,sear
               })}
           </div>
           {posts?.pageInfo?.hasNextPage && (
-            <ExploreMore posts={posts} setPosts={setPosts} no={9} loading={loading} setLoading={setLoading} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <ExploreMore
+              posts={posts}
+              setPosts={setPosts}
+              no={9}
+              loading={loading}
+              setLoading={setLoading}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
           )}
         </div>
       ) : (
-        <NoPostAvailable setPosts={setPosts}/>
+        <NoPostAvailable setPosts={setPosts} />
       )}
     </main>
   );

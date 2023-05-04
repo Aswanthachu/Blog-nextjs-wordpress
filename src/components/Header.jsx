@@ -80,7 +80,7 @@ const Header = ({ posts, setPosts,setSearchTerm }) => {
                 <button
                   onClick={handleClick}
                   type="button"
-                  className=" flex  lg:hidden justify-end"
+                  className="flex lg:hidden  md:justify-end"
                 >
                   {!showMobileMenu && (
                     <Image
