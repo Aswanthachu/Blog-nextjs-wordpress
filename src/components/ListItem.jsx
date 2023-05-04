@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const ListItem = ({ itemname, data }) => {
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative hidden lg:inline-block text-left">
       <div className="flex justify-center items-center">
         <Menu.Button
           className=" inline-flex w-full justify-center items-center font-semibold text-black text-base"

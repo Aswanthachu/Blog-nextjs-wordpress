@@ -36,13 +36,17 @@ const Header = ({ posts, setPosts }) => {
   return (
     <>
       <div className="w-full flex py-3 md:py-5 justify-between items-center sticky top-0 z-40 bg-bgMain">
-        <Link href="/" className="text-darkBlue text-lg md:text-2xl font-sans">
-          <span className="font-semibold md:mx-1">KKS</span>
-          <span className="font-semibold mx-1">Capitals</span>
-          <span className="font-light hidden md:inline">Blogs</span>
-        </Link>
-        <div className="hidden lg:inline">
-          <ul className="flex gap-14 font-semibold items-center">
+          <Link
+            href="/"
+            className={`text-darkBlue text-lg md:text-2xl font-sans ${search && "hidden md:flex"}`}
+          >
+            <span className="font-semibold md:mx-1">KKS</span>
+            <span className="font-semibold mx-1">Capitals</span>
+            <span className="font-light hidden md:inline">Blogs</span>
+          </Link>
+
+        <div className="">
+          <ul className="flex gap-5 lg:gap-14 font-semibold items-center">
             {!search ? (
               <>
                 {categories?.map((c, index, arr) => {
@@ -50,7 +54,7 @@ const Header = ({ posts, setPosts }) => {
                     return (
                       <li
                         key={index}
-                        className="p-3 hover:cursor-pointer"
+                        className="p-3 hover:cursor-pointer hidden lg:block"
                         onClick={() => handleSelectCategory(c)}
                       >
                         {c.name}
@@ -63,15 +67,30 @@ const Header = ({ posts, setPosts }) => {
                 )}
                 {(router.asPath.length === 1 ||
                   router.asPath.includes("category")) && (
+                  <Image
+                    src="/svgs/Search.svg"
+                    alt="search"
+                    width="40"
+                    height="40"
+                    className="p-2 hover:cursor-pointer"
+                    onClick={() => setSearch(true)}
+                  />
+                )}
+
+                <button
+                  onClick={handleClick}
+                  type="button"
+                  className=" flex  lg:hidden justify-end"
+                >
+                  {!showMobileMenu && (
                     <Image
-                      src="/svgs/Search.svg"
-                      alt="search"
-                      width="40"
-                      height="40"
-                      className="p-2 hover:cursor-pointer"
-                      onClick={() => setSearch(true)}
+                      src="/svgs/HamburgerMenu.svg"
+                      alt="ham"
+                      width="24"
+                      height="24"
                     />
                   )}
+                </button>
               </>
             ) : (
               <SearchComponent
@@ -82,21 +101,6 @@ const Header = ({ posts, setPosts }) => {
             )}
           </ul>
         </div>
-
-        <button
-          onClick={handleClick}
-          type="button"
-          className=" flex  lg:hidden justify-end"
-        >
-          {!showMobileMenu && (
-            <Image
-              src="/svgs/HamburgerMenu.svg"
-              alt="ham"
-              width="24"
-              height="24"
-            />
-          )}
-        </button>
       </div>
 
       <div
