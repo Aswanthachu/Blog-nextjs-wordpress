@@ -30,7 +30,7 @@ export async function getStaticPaths() {
   };
 }
 
-const SinglePost = ({ post, loading, setLoading }) => {
+const SinglePost = ({ post, loading, setLoading,setSearchTerm }) => {
   const [posts, setPosts] = useState();
 
   useEffect(() => {
@@ -47,6 +47,11 @@ const SinglePost = ({ post, loading, setLoading }) => {
   useEffect(() => {
     setLoading(false);
   }, [posts]);
+
+  useEffect(()=>{
+    setSearchTerm();
+  },[])
+
 
   return (
     <>
@@ -69,8 +74,8 @@ const SinglePost = ({ post, loading, setLoading }) => {
               <ExploreMore
                 posts={posts}
                 setPosts={setPosts}
-                id={post?.categories?.nodes[0]?.id}
-                no={6}
+                Id={post?.categories?.nodes[0]?.id}
+                No={6}
                 loading={loading}
                 setLoading={setLoading}
               />

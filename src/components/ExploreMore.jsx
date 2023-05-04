@@ -1,13 +1,32 @@
 import Button from "@/components/Button";
-import { getAllPostByCategories, getPostList } from "@/lib/posts";
-import { useState } from "react";
+import {
+  getAllPostByCategories,
+  getPostList,
+  searchPosts,
+  explorePostsBySearchWithCategories,
+} from "@/lib/posts";
+import { useRouter } from "next/router";
 
-const ExploreMore = ({ posts, setPosts, id, no ,loading,setLoading}) => {
+const ExploreMore = ({
+  posts,
+  setPosts,
+  No,
+  Id,
+  loading,
+  setLoading,
+  searchTerm,
+  setSearchTerm,
+}) => {
+  const router=useRouter();
+  console.log(Id,No)
+
   const handleClick = async () => {
     setLoading(true);
     if (posts.pageInfo.hasNextPage) {
       let morePosts;
-      if (id) {
+      {
+        /*
+      if (id ) {
         morePosts = await getAllPostByCategories({
           id: id,
           no: no,
@@ -15,6 +34,50 @@ const ExploreMore = ({ posts, setPosts, id, no ,loading,setLoading}) => {
         });
       } else {
         morePosts = await getPostList({ after: posts.pageInfo.endCursor, no: 9 });
+      }
+      */
+      }
+
+      const path = router.asPath;
+      const parts = path.split("/");
+      const id = parts[parts.length - 1];
+      console.log(id);
+
+      if (id && searchTerm) {
+        console.log("hii 1");
+        morePosts = await explorePostsBySearchWithCategories({
+          id: id,
+          searchTerm: searchTerm,
+          after: posts.pageInfo.endCursor,
+        });
+      } 
+      else if (Id) {
+        morePosts = await getAllPostByCategories({
+          id: Id,
+          no: No,
+          after: posts.pageInfo.endCursor,
+        });
+      }
+      else if (id && !searchTerm) {
+        console.log("hii 2");
+        morePosts = await getAllPostByCategories({
+          id: id || Id,
+          no: No || 9,
+          after: posts.pageInfo.endCursor,
+        });
+      } else if (!id && searchTerm) {
+        console.log("hii 3");
+        morePosts = await searchPosts({
+          searchQuery: searchTerm,
+          after: posts.pageInfo.endCursor,
+        });
+      }
+       else {
+        console.log("hii 4");
+        morePosts = await getPostList({
+          after: posts.pageInfo.endCursor,
+          no: 9,
+        });
       }
 
       const updatedPosts = {

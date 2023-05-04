@@ -29,7 +29,7 @@ export async function getStaticPaths() {
   };
 }
 
-const Category = ({ categoryPost, posts, setPosts, loading, setLoading }) => {
+const Category = ({ categoryPost, posts, setPosts, loading, setLoading,searchTerm,setSearchTerm }) => {
   useEffect(() => {
     setPosts(categoryPost);
   }, [categoryPost]);
@@ -37,6 +37,10 @@ const Category = ({ categoryPost, posts, setPosts, loading, setLoading }) => {
   useEffect(() => {
     setLoading(false);
   }, [posts]);
+
+  useEffect(()=>{
+    setSearchTerm();
+  },[])
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
@@ -54,6 +58,7 @@ const Category = ({ categoryPost, posts, setPosts, loading, setLoading }) => {
               no={9}
               loading={loading}
               setLoading={setLoading}
+              searchTerm={searchTerm}
             />
           )}
         </div>

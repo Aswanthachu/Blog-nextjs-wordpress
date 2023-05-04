@@ -16,7 +16,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPosts, posts, setPosts,loading,setLoading }) {
+export default function Home({ allPosts, posts, setPosts,loading,setLoading,searchTerm,setSearchTerm }) {
   const [windowSize, setWindowSize] = useState();
 
   useEffect(() => {
@@ -29,7 +29,11 @@ export default function Home({ allPosts, posts, setPosts,loading,setLoading }) {
 
   useEffect(()=>{
     setLoading(false);
-  },[posts])
+  },[posts]);
+
+  useEffect(()=>{
+    setSearchTerm();
+  },[])
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
@@ -47,7 +51,7 @@ export default function Home({ allPosts, posts, setPosts,loading,setLoading }) {
               })}
           </div>
           {posts?.pageInfo?.hasNextPage && (
-            <ExploreMore posts={posts} setPosts={setPosts} no={9} loading={loading} setLoading={setLoading} />
+            <ExploreMore posts={posts} setPosts={setPosts} no={9} loading={loading} setLoading={setLoading} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
           )}
         </div>
       ) : (

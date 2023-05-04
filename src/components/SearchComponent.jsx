@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const SearchComponent = ({ search, setSearch, setPosts }) => {
+const SearchComponent = ({ search, setSearch, setPosts,setSearchTerm }) => {
   const router = useRouter();
   const [searchQuery, setQuery] = useState("");
 
@@ -11,11 +11,11 @@ const SearchComponent = ({ search, setSearch, setPosts }) => {
     if (event.key === "Enter") {
       event.preventDefault();
       if (router.pathname === "/") {
-        const searchedPosts = await searchPosts(searchQuery);
+        const searchedPosts = await searchPosts({searchQuery});
+        setSearchTerm(searchQuery);
         setPosts(searchedPosts);
         setSearch(false);
       } else {
-        console.log("hello");
         const path = router.asPath;
         const parts = path.split("/");
         const slug = parts[parts.length - 1];
@@ -23,6 +23,7 @@ const SearchComponent = ({ search, setSearch, setPosts }) => {
           searchQuery,
           slug,
         });
+        setSearchTerm(searchQuery);
         setPosts(searchedPosts);
         setSearch(false);
       }

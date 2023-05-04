@@ -12,7 +12,7 @@ import { MutualFundItems,InvestingItems,DematAcItems } from "@/utils/datas";
 */
 }
 
-const Header = ({ posts, setPosts }) => {
+const Header = ({ posts, setPosts,setSearchTerm }) => {
   const router = useRouter();
   const [categories, setCategories] = useState();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -97,6 +97,7 @@ const Header = ({ posts, setPosts }) => {
                 search={search}
                 setSearch={setSearch}
                 setPosts={setPosts}
+                setSearchTerm={setSearchTerm}
               />
             )}
           </ul>
