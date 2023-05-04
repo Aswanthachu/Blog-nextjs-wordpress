@@ -30,7 +30,7 @@ export async function getPostList({ after, no }) {
 export async function getPostSlugs() {
   const query = {
     query: `query getPostSlug {
-      posts(where: {}, after: "null", first: 1000000000) {
+      posts(after: "null", first: 1000000000) {
         nodes {
           slug
         }
@@ -51,6 +51,7 @@ export async function getSinglePost(slug) {
           categories {
             nodes {
               id
+              slug
             }
           }
         }
@@ -101,6 +102,11 @@ export async function getAllPostByCategories({ after, id, no }) {
         posts(after: "${after}", first: ${no}) {
           nodes {
             slug
+            categories {
+              nodes {
+                slug
+              }
+            }
             featuredImage {
               node {
                 sourceUrl
@@ -137,6 +143,11 @@ export async function searchPosts({searchQuery,after}) {
     nodes {
       slug
       title
+      categories {
+        nodes {
+          slug
+        }
+      }
       featuredImage {
         node {
           sourceUrl
@@ -175,6 +186,11 @@ export async function searchPostsByCategory({ searchQuery, slug }) {
           nodes {
             slug
             title
+            categories {
+              nodes {
+                slug
+              }
+            }
             featuredImage {
               node {
                 sourceUrl
@@ -211,6 +227,11 @@ export async function explorePostsBySearchWithCategories({ after, id,searchTerm 
         posts(after: "${after}", first: 9, where: {search: "${searchTerm}"}) {
           nodes {
             slug
+            categories {
+              nodes {
+                slug
+              }
+            }
             featuredImage {
               node {
                 sourceUrl
@@ -242,6 +263,11 @@ export async function explorePostByCategories({ after, id,searchTerm }) {
         posts(after: "${after}", first: 9, where: {search: "${searchTerm}"}) {
           nodes {
             slug
+            categories {
+              nodes {
+                slug
+              }
+            }
             featuredImage {
               node {
                 sourceUrl

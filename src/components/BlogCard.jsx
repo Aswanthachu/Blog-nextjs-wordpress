@@ -7,7 +7,7 @@ import Button from "./Button";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Trending from "./Trending";
 
-const BlogCard = ({ post,setPageLoading }) => {
+const BlogCard = ({ post, setPageLoading,category }) => {
   const router = useRouter();
 
   const handleClick = (slug) => {
@@ -42,7 +42,7 @@ const BlogCard = ({ post,setPageLoading }) => {
             className="object-fill w-full rounded-3xl h-[200px]"
           />
         )}
-        <Trending small />
+        { category === "trending" && <Trending small />}
       </div>
       <div className="my-2  post-content">
         <h1 className="text-lg font-semibold  px-3">{post.title}</h1>

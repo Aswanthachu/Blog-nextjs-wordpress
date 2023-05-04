@@ -63,6 +63,8 @@ export default function Home({
     setPageLoading(false);
   }, [allPosts]);
 
+  console.log(allPosts);
+
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
       {!pageLoading ? (
@@ -84,6 +86,7 @@ export default function Home({
                           post={post}
                           key={index}
                           setPageLoading={setPageLoading}
+                          category={post?.categories?.nodes[0]?.slug}
                         />
                       );
                     }
