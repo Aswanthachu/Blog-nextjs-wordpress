@@ -1,9 +1,10 @@
 import Button from "@/components/Button";
 import { getAllPostByCategories, getPostList } from "@/lib/posts";
+import { useState } from "react";
 
-const ExploreMore = ({ posts, setPosts, id, no }) => {
-  console.log(id);
+const ExploreMore = ({ posts, setPosts, id, no ,loading,setLoading}) => {
   const handleClick = async () => {
+    setLoading(true);
     if (posts.pageInfo.hasNextPage) {
       let morePosts;
       if (id) {
@@ -32,8 +33,9 @@ const ExploreMore = ({ posts, setPosts, id, no }) => {
     <div className="w-full flex justify-center items-center mt-16">
       <Button
         text="Explore"
-        className={`bg-darkBlue flex items-center text-white p-3 rounded-lg hover:scale-110`}
+        className={`bg-darkBlue flex items-center text-white p-3 rounded-lg hover:scale-110 gap-2`}
         onClick={handleClick}
+        loading={loading}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import BlogCard from "@/components/BlogCard";
 import ExploreMore from "@/components/ExploreMore";
 import NoPostAvailable from "@/components/NoPostAvailable";
 import { getAllPostByCategories, getCategorySlugs } from "@/lib/posts";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export async function getStaticProps({ params }) {
   console.log(params.category);
@@ -29,10 +29,14 @@ export async function getStaticPaths() {
   };
 }
 
-const Category = ({ categoryPost, posts, setPosts }) => {
+const Category = ({ categoryPost, posts, setPosts, loading, setLoading }) => {
   useEffect(() => {
     setPosts(categoryPost);
   }, [categoryPost]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [posts]);
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
@@ -44,7 +48,13 @@ const Category = ({ categoryPost, posts, setPosts }) => {
             ))}
           </div>
           {posts?.pageInfo?.hasNextPage && (
-            <ExploreMore posts={posts} setPosts={setPosts} no={9} />
+            <ExploreMore
+              posts={posts}
+              setPosts={setPosts}
+              no={9}
+              loading={loading}
+              setLoading={setLoading}
+            />
           )}
         </div>
       ) : (

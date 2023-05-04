@@ -30,13 +30,11 @@ export async function getStaticPaths() {
   };
 }
 
-const SinglePost = ({ post }) => {
-
-  const [posts,setPosts]=useState();
+const SinglePost = ({ post, loading, setLoading }) => {
+  const [posts, setPosts] = useState();
 
   useEffect(() => {
     async function fetchSuggestedPost() {
-      console.log("hiii");
       const Posts = await getAllPostByCategories({
         id: post?.categories?.nodes[0]?.id,
         no: 6,
@@ -46,7 +44,9 @@ const SinglePost = ({ post }) => {
     fetchSuggestedPost();
   }, []);
 
-  console.log(posts);
+  useEffect(() => {
+    setLoading(false);
+  }, [posts]);
 
   return (
     <>
@@ -71,6 +71,8 @@ const SinglePost = ({ post }) => {
                 setPosts={setPosts}
                 id={post?.categories?.nodes[0]?.id}
                 no={6}
+                loading={loading}
+                setLoading={setLoading}
               />
             )}
           </div>

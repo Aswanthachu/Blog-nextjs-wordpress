@@ -16,7 +16,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPosts, posts, setPosts }) {
+export default function Home({ allPosts, posts, setPosts,loading,setLoading }) {
   const [windowSize, setWindowSize] = useState();
 
   useEffect(() => {
@@ -26,6 +26,10 @@ export default function Home({ allPosts, posts, setPosts }) {
   useEffect(() => {
     setPosts(allPosts);
   }, []);
+
+  useEffect(()=>{
+    setLoading(false);
+  },[posts])
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">
@@ -43,7 +47,7 @@ export default function Home({ allPosts, posts, setPosts }) {
               })}
           </div>
           {posts?.pageInfo?.hasNextPage && (
-            <ExploreMore posts={posts} setPosts={setPosts} no={9} />
+            <ExploreMore posts={posts} setPosts={setPosts} no={9} loading={loading} setLoading={setLoading} />
           )}
         </div>
       ) : (

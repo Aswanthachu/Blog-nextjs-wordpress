@@ -5,7 +5,9 @@ import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [posts, setPosts] = useState();
-  const pageProp = { posts, setPosts, ...pageProps };
+  const [loading,setLoading]=useState();
+
+  const pageProp = { posts, setPosts,loading,setLoading, ...pageProps };
   return (
     <>
       <div className="w-full min-h-screen px-5 md:px-20 bg-bgMain">
