@@ -7,8 +7,22 @@ import Button from "./Button";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Trending from "./Trending";
 
-const BlogCard = ({ post, setPageLoading,category }) => {
+const BlogCard = ({ post, setPageLoading, category }) => {
   const router = useRouter();
+
+  console.log(post);
+
+  function findValueBySlug(objectsArray, targetSlug) {
+    for (let i = 0; i < objectsArray?.length; i++) {
+      const obj = objectsArray[i];
+      if (obj.hasOwnProperty('slug') && obj.slug === targetSlug) {
+        return true; // Assuming the desired value is stored in a key called "value"
+      }
+    }
+    
+    // Return null or handle the case when the slug is not found
+    return false;
+  }
 
   const handleClick = (slug) => {
     setPageLoading(true);
@@ -42,7 +56,7 @@ const BlogCard = ({ post, setPageLoading,category }) => {
             className="object-fill w-full rounded-3xl h-[200px]"
           />
         )}
-        { category === "trending" && <Trending small />}
+        {findValueBySlug(post?.categories?.nodes,'trending') && <Trending small />}
       </div>
       <div className="my-2  post-content">
         <h1 className="text-lg font-semibold  px-3">{post.title}</h1>
