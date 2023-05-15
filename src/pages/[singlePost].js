@@ -80,7 +80,7 @@ const SinglePost = ({
                 </h1>
                 <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
                   {posts?.nodes?.map((p, index) => (
-                    <BlogCard post={p} key={index} />
+                    <BlogCard post={p} key={index} setPageLoading={setPageLoading}/>
                   ))}
                 </div>
                 {posts?.pageInfo?.hasNextPage && (

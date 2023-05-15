@@ -43,7 +43,7 @@ const Category = ({
 }) => {
   useEffect(() => {
     setPosts(categoryPost);
-    setPageLoading(false)
+    setPageLoading(false);
   }, [categoryPost]);
 
   useEffect(() => {
@@ -62,7 +62,11 @@ const Category = ({
             <div className="max-w-7xl mx-auto mt-16">
               <div className="w-full inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
                 {posts?.nodes?.map((post, index) => (
-                  <BlogCard post={post} key={index} />
+                  <BlogCard
+                    post={post}
+                    key={index}
+                    setPageLoading={setPageLoading}
+                  />
                 ))}
               </div>
               {posts?.pageInfo?.hasNextPage && (
@@ -77,7 +81,7 @@ const Category = ({
               )}
             </div>
           ) : (
-            <NoPostAvailable />
+            <NoPostAvailable setPageLoading={setPageLoading} />
           )}
         </>
       ) : (

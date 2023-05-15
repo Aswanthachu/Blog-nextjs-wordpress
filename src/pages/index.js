@@ -105,7 +105,7 @@ export default function Home({
               )}
             </div>
           ) : (
-            <NoPostAvailable setPosts={setPosts} />
+            <NoPostAvailable setPageLoading={setPageLoading}/>
           )}
         </>
       ) : (

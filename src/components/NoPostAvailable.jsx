@@ -1,7 +1,8 @@
 import Image from "next/image";
 
-const NoPostAvailable = () => {
+const NoPostAvailable = ({setPageLoading}) => {
   const handleBackButtonClick = () => {
+    setPageLoading(true);
     window.location.reload();
   };
 
