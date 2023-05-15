@@ -57,13 +57,8 @@ export default function Home({
 
   useEffect(() => {
     setPageLoading(true);
-  }, []);
-
-  useEffect(() => {
-    setPageLoading(false);
+    allPosts && setPageLoading(false);
   }, [allPosts]);
-
-  console.log(allPosts);
 
   return (
     <main className="w-full border-t-2 border-darkBlue pb-10">

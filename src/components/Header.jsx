@@ -43,6 +43,7 @@ const Header = ({ setPosts, setSearchTerm, pageLoading, setPageLoading }) => {
       <div className="w-full flex py-3 md:py-5 justify-between items-center sticky top-0 z-40 bg-bgMain">
         <Link
           href="/"
+          onClick={()=>setPageLoading(true)}
           className={`text-darkBlue text-lg md:text-2xl font-sans ${
             search && "hidden md:flex"
           }`}

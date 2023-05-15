@@ -27,6 +27,7 @@ export async function getPostList({ after, no }) {
   const resJson = await graphqlRequest(query);
   return resJson.data.posts;
 }
+
 export async function getPostSlugs() {
   const query = {
     query: `query getPostSlug {
@@ -40,6 +41,7 @@ export async function getPostSlugs() {
   const resJson = await graphqlRequest(query);
   return resJson.data.posts.nodes;
 }
+
 export async function getSinglePost(slug) {
   const query = {
     query: `query getSinglePost {
